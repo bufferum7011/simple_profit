@@ -11,7 +11,7 @@
 	<name>simple_profit</name>
 
 
-  <parent>
+  	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.0-SNAPSHOT</version>
@@ -23,7 +23,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<java.version>20</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 
@@ -39,93 +39,75 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.31</version>
 		</dependency>
-
-		<!-- <dependency>
-			<groupId>com.google.code.geocoder-java</groupId>
-			<artifactId>geocoder-java</artifactId>
-			<version>0.16</version>
-		</dependency> -->
-
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency> -->
-
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency> -->
 	</dependencies>
 
 
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- было от спринга -->
 				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<mainClass>simple_profit.Main</mainClass>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<source>8</source>
+						<target>8</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+
+				<!-- было от спринга -->
+				<!-- <plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-
-				<!-- мое -->
-				<plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-				</plugin>
+				</plugin> -->
 
 				<plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.0.2</version>
 				</plugin>
 
 				<plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <mainClass>simple_profit.Bot</mainClass>
-          </configuration>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
 				</plugin>
 
 				<plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-          <configuration>
-            <source>8</source>
-            <target>8</target>
-          </configuration>
-				</plugin>
-				
-				<plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
 				</plugin>
 
 				<plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-				</plugin>
-
-				<plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-				</plugin>
-
-				<plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-				</plugin>
-
-				<plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-				</plugin>
-
-				<plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>3.0.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
