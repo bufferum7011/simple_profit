@@ -3,13 +3,20 @@ import static simple_profit.Main.*;
 import static simple_profit.Handler.*;
 import static simple_profit.Exec_sql.*;
 import static simple_profit.Data.*;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class Bot extends TelegramLongPollingBot {
+
     @Override public void onUpdateReceived(Update update) {
         try {
             System.out.print("\n[UPDATE]");
@@ -18,7 +25,10 @@ public class Bot extends TelegramLongPollingBot {
             // обработка кнопок
             if(update.hasCallbackQuery()) {
                 System.out.print("[has_callback=" + Data.get_data() + "]");
-                if(Data.get_data().equals("ok_1")) { execute(send_my_contact()); }
+                if(Data.get_data().equals("ok_1")) {
+                    execute(new DeleteMessage(get_chat_id(), Data.get_msg_id() - 1));
+                    execute(send_my_contact());
+                }
                 if(Data.get_data().equals("catch_contact")) {
                     // execute();
                 }
@@ -32,7 +42,10 @@ public class Bot extends TelegramLongPollingBot {
                 System.out.print("[has_text]");
 
                 if(get_cmd().equals("/start")) { execute(get_menu_login()); }
-                
+                if(get_cmd().equals("/start_mailing_flow")) {
+                    Mailing_flow mailing_flow = new Mailing_flow();
+                    mailing_flow.start();
+                }
             }
 
 
@@ -53,7 +66,6 @@ public class Bot extends TelegramLongPollingBot {
         }
         catch(Exception e) { System.out.println("\n[ERROR UPDATE]"); }
     }
-
     @Override public String getBotToken() { return get_prop("bot.token"); }
     @Override public String getBotUsername() { return get_prop("bot.username"); }
 }

@@ -2,5 +2,3 @@ target/*
 
 .vscode/*
 !.vscode/simple_profit.sh
-
-draft.txt

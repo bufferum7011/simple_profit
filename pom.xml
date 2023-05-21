@@ -10,7 +10,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>simple_profit</name>
 
-
   	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,29 +17,57 @@
 		<relativePath/>
 	</parent>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<java.version>11</java.version>
+		<spring.version>6.0.9</spring.version>
 	</properties>
 
-
 	<dependencies>
+		<!-- telegrambots -->
 		<dependency>
 			<groupId>org.telegram</groupId>
 			<artifactId>telegrambots</artifactId>
 			<version>6.5.0</version>
 		</dependency>
 
+		<!-- mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.31</version>
 		</dependency>
-	</dependencies>
 
+		<!-- okhttp -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.11.0</version>
+		</dependency>
+
+		<!-- spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -113,7 +140,6 @@
 		</pluginManagement>
 	</build>
 
-
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -132,7 +158,6 @@
 			</releases>
 		</repository>
 	</repositories>
-
 
 	<pluginRepositories>
 		<pluginRepository>
