@@ -1,22 +1,14 @@
 package simple_profit;
 import static simple_profit.Main.*;
 import static simple_profit.Handler.*;
-import static simple_profit.Exec_sql.*;
 import static simple_profit.Data.*;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class Bot extends TelegramLongPollingBot {
-
     @Override public void onUpdateReceived(Update update) {
         try {
             System.out.print("\n[UPDATE]");
@@ -36,20 +28,33 @@ public class Bot extends TelegramLongPollingBot {
                 
             }
 
-
             // обработка сообшений
             if(update.getMessage().hasText()) {
                 System.out.print("[has_text]");
 
                 if(get_cmd().equals("/start")) { execute(get_menu_login()); }
-                if(get_cmd().equals("/start_mailing_flow")) {
-                    Mailing_flow mailing_flow = new Mailing_flow();
-                    mailing_flow.start();
+                if(get_cmd().equals("satellite")) {
+                    Thread satellite = new Thread() {
+                        @Override public void start() {
+                            System.out.println("[satellite] - Waiting");
+                            while(key_global) {
+                                try {
+                                    if(key_single) {
+                                        execute(new SendMessage("5843231448", "Экстроконтролируемая рассылка"));
+                                        System.out.println("\n[satellite] - ОТПРАВИЛ в 5843231448");
+                                        execute(new SendMessage("2142160412", "Экстроконтролируемая рассылка"));
+                                        System.out.println("\n[satellite] - ОТПРАВИЛ в 2142160412");
+
+                                        mailing_off();
+                                    }
+                                }
+                                catch(TelegramApiException e) { System.out.println("[satellite] - Error"); }
+                            }
+                        }
+                    };
+                    satellite.start();
                 }
             }
-
-
-
 
             // взятие номера телефона
             if(Data.get_o().hasContact()) {
