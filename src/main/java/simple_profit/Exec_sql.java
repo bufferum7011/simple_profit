@@ -4,7 +4,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
     Database management
@@ -12,14 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 */
 public class Exec_sql {
 
-    @Value("${mysql.server}")   public static String mysql_server;
-    @Value("${mysql.user}")     public static String mysql_user;
-    @Value("${mysql.password}") public static String mysql_password;
-
     private static Statement get_statement() {
-        try {
-            return DriverManager.getConnection(mysql_server, mysql_user, mysql_password).createStatement();
-        }
+        try { return DriverManager.getConnection(mysql_server, mysql_user, mysql_password).createStatement(); }
         catch(SQLException e) { System.out.println("[ERROR get_statement]"); return null; }
     }
 

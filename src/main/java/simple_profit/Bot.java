@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
+
     @Override public void onUpdateReceived(Update update) {
         try {
             System.out.print("\n[UPDATE]");
@@ -74,7 +75,6 @@ public class Bot extends TelegramLongPollingBot {
         }
         catch(Exception e) { System.out.println("\n[ERROR UPDATE]"); }
     }
-    
-    @Override public String getBotToken() { return token; }
     @Override public String getBotUsername() { return username; }
+    public Bot() { super(token); }
 }
