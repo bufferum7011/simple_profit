@@ -1,9 +1,8 @@
 package simple_profit;
-import static simple_profit.Main.*;
+import static simple_profit.Spring_config.*;
 import static simple_profit.Handler.*;
 import static simple_profit.Data.*;
 import static simple_profit.Management_bot.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -76,8 +75,6 @@ public class Bot extends TelegramLongPollingBot {
         catch(Exception e) { System.out.println("\n[ERROR UPDATE]"); }
     }
     
-    @Value("${bot.token}") public static String token;
     @Override public String getBotToken() { return token; }
-    @Value("${bot.username}") public static String username;
     @Override public String getBotUsername() { return username; }
 }

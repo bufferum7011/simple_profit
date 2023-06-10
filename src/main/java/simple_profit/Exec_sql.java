@@ -1,5 +1,5 @@
 package simple_profit;
-import static simple_profit.Main.*;
+import static simple_profit.Spring_config.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;

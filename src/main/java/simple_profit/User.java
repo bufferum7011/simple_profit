@@ -1,6 +1,5 @@
 package simple_profit;
 import static simple_profit.Exec_sql.*;
-import static simple_profit.Main.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.telegram.telegrambots.meta.api.objects.Update;

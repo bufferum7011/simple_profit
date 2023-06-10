@@ -73,17 +73,17 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
-				</plugin>
-
-				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>3.0.0</version>
 					<configuration>
-						<mainClass>simple_profit.Main</mainClass>
+						<mainClass>simple_profit.Spring_config</mainClass>
 					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
 				</plugin>
 
 				<plugin>
