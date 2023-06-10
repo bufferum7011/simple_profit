@@ -2,12 +2,16 @@ package simple_profit;
 import static simple_profit.Main.*;
 import static simple_profit.Handler.*;
 import static simple_profit.Data.*;
+import static simple_profit.Management_bot.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+@Component
 public class Bot extends TelegramLongPollingBot {
     @Override public void onUpdateReceived(Update update) {
         try {
@@ -71,6 +75,9 @@ public class Bot extends TelegramLongPollingBot {
         }
         catch(Exception e) { System.out.println("\n[ERROR UPDATE]"); }
     }
-    @Override public String getBotToken() { return get_prop("bot.token"); }
-    @Override public String getBotUsername() { return get_prop("bot.username"); }
+    
+    @Value("${bot.token}") public static String token;
+    @Override public String getBotToken() { return token; }
+    @Value("${bot.username}") public static String username;
+    @Override public String getBotUsername() { return username; }
 }

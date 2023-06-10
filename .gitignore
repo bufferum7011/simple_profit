@@ -2,3 +2,6 @@ target/*
 
 .vscode/*
 !.vscode/simple_profit.sh
+
+src/*
+!scr/main/java/*

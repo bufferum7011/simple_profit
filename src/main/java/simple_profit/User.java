@@ -33,32 +33,32 @@ public class User {
 
     // setters to bd
     public static void set_chat_id(String chat_id) {
-        Sql_update("INSERT users(chat_id) VALUES(" + chat_id + ");");
+        sql_update("INSERT users(chat_id) VALUES(" + chat_id + ");");
     }
     public static void set_tag(String tag, String chat_id) {
-        Sql_update("UPDATE users SET tag = '" + tag + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET tag = '" + tag + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_name(String name, String chat_id) {
-        Sql_update("UPDATE users SET name = '" + name + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET name = '" + name + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_adress(String adress, String chat_id) {
-        Sql_update("UPDATE users SET adress = '" + adress + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET adress = '" + adress + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_num_phone(String num_phone, String chat_id) {
-        Sql_update("UPDATE users SET num_phone = '" + num_phone + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET num_phone = '" + num_phone + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_status(String status, String chat_id) {
-        Sql_update("UPDATE users SET status = '" + status + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET status = '" + status + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_msg_id(int msg_id, String chat_id) {
-        Sql_update("UPDATE users SET msg_id = '" + msg_id + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET msg_id = '" + msg_id + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_geolocation(double latitude, double longitude, String chat_id) {
-        Sql_update("UPDATE users SET latitude = '" + latitude + "' WHERE chat_id = " + chat_id + ";");
-        Sql_update("UPDATE users SET longitude = '" + longitude + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET latitude = '" + latitude + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET longitude = '" + longitude + "' WHERE chat_id = " + chat_id + ";");
     }
     public static void set_receipt(String receipt, String chat_id) {
-        Sql_update("UPDATE users SET receipt = '" + receipt + "' WHERE chat_id = " + chat_id + ";");
+        sql_update("UPDATE users SET receipt = '" + receipt + "' WHERE chat_id = " + chat_id + ";");
     }
     
     // constructor
@@ -68,7 +68,7 @@ public class User {
             String chat_id_given = "";
             if(update.hasMessage()) { chat_id_given = update.getMessage().getChatId().toString(); }
             else { chat_id_given = update.getCallbackQuery().getMessage().getChatId().toString(); }
-            ResultSet resultSet = Sql_callback("SELECT * FROM users WHERE chat_id = " + chat_id_given + ";");
+            ResultSet resultSet = sql_callback("SELECT * FROM users WHERE chat_id = " + chat_id_given + ";");
             while(resultSet.next()) {
                 users_id = resultSet.getInt("users_id");
                 chat_id = resultSet.getString("chat_id");
