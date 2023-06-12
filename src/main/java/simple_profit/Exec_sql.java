@@ -1,5 +1,5 @@
 package simple_profit;
-import static simple_profit.Spring_config.*;
+import static simple_profit.Main.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class Exec_sql {
 
     private static Statement get_statement() {
-        try { return DriverManager.getConnection(mysql_server, mysql_user, mysql_password).createStatement(); }
+        try { return DriverManager.getConnection(main.mysql_server, main.mysql_user, main.mysql_password).createStatement(); }
         catch(SQLException e) { System.out.println("[ERROR get_statement]"); return null; }
     }
 
